@@ -9,13 +9,14 @@ export const getPendingIssues = (type) => async (dispatch) => {
     try {
         dispatch({ type: types.REQUEST_ISSUES });
 
-        // const response =await  ApiGetIssues(type)
-        // dispatch(receivedIssues( response))
+        const response =await  ApiGetIssues(type)
+        console.log("MainIssues",response)
+        dispatch(receivedIssues( response))
         //==============================mOCK====================
-        mock.getIssues(issues=>{
-            console.log("index",issues)
-            dispatch(receivedIssues(issues))
-        })
+        // mock.getIssues(issues=>{
+        //     console.log("index",issues)
+        //     dispatch(receivedIssues(issues))
+        // })
     //    =============================================================
 
     }catch (e) {
@@ -50,18 +51,18 @@ const approval = ( id, approvalType) => ({
 export const setApproval = (id, type) => (dispatch) => {
     dispatch({type: types.POSTING_APPROVAL});
     //=============================MOCK===========
-    mock.approve(id, ()=>{
-        dispatch(approval(id, type))
-    })
+    // mock.approve(id, ()=>{
+    //     dispatch(approval(id, type))
+    // })
     //========================================================
-    // axios
-    //     .post(constants.API_ROOT + `/issues/${id}/${type}`)
-    //     .then((res) => {
-    //         dispatch(approval(id, type));
-    //         console.log("postRes-", res)
-    //     })
-    //     .catch((err) => {
-    //         dispatch({ type: types.LOADING_ERROR, error:err });
-    //         console.log(err)
-    //     });
+    axios
+        .post(constants.API_ROOT + `issues/${id}/${type}`)
+        .then((res) => {
+            dispatch(approval(id, type));
+            console.log("postRes-", res)
+        })
+        .catch((err) => {
+            dispatch({ type: types.LOADING_ERROR, error:err });
+            console.log(err)
+        });
 };

@@ -9,10 +9,10 @@ export const APPROVAL_POSTED = 'APPROVAL_POSTED';
 export const IssueTypes = {
     APPROVED: 'getApproved',
     DECLINED: 'getDeclined',
-    PENDING: 'Pending',
+    PENDING: 'pending',
 }
-export const setIssue = {
-    APPROVE: 'approved',
-    DECLINE: 'declined',
 
+export const setIssue = {
+    APPROVE: 'approve',
+    DECLINE: 'decline',
 }

@@ -2,34 +2,37 @@ import React, {useState} from "react";
 import * as types from '../../../../store/issues/issues.types'
 
 function SingleIssue({issue={}, setApproval}) {
-  const [accepted, setAccepted] = useState(issue.status===1);
-  const [declined, setDeclined] = useState(issue.status===2);
+
+  const [status, setStatus] = useState("pending");
 
   const handleAccept=()=> {
-    setAccepted(true)
-    setDeclined(false)
-    console.log("accepted",accepted)
+    setStatus(types.setIssue.APPROVE)
     setApproval(issue.id, types.setIssue.APPROVE)
 
   }
   const handleDecline=()=> {
-    setDeclined(true)
-    setAccepted(false)
-    console.log("dec",declined)
+    setStatus(types.setIssue.DECLINE)
     setApproval(issue.id, types.setIssue.DECLINE)
   }
 
-
+  let className = 'badge';
+  if (status === types.setIssue.APPROVE) {
+    className += ' badge-success';
+  }else if (status === types.setIssue.DECLINE){
+    className += ' badge-danger';
+  }else {
+    className += ' badge-warning';
+  }
 
 
   return <tr>
-    <td className="text-center text-muted">#345</td>
+    <td className="text-center text-muted">{issue.id}</td>
     <td>
       <div className="widget-content p-0">
         <div className="widget-content-wrapper">
           <div className="widget-content-left mr-3">
             <div className="widget-content-left">
-             lorem ipsum shlkfdjv f sodfighsldjv sojfdvoifjv  sfodkvjosfdjv osvjosdfj
+              {issue.issue}
             </div>
           </div>
           <div className="widget-content-left flex2">
@@ -38,9 +41,9 @@ function SingleIssue({issue={}, setApproval}) {
         </div>
       </div>
     </td>
-    <td className="text-center">Madrid</td>
+    <td className="text-center">{issue.user_id}</td>
     <td className="text-center">
-      <div className="badge badge-warning">Pending</div>
+      <div className={className}>{status}</div>
     </td>
     <td className="text-center">
       <button
@@ -48,25 +51,29 @@ function SingleIssue({issue={}, setApproval}) {
           id="PopoverCustomT-1"
           className="btn btn-primary btn-sm"
       >
-        Details
+        comments
       </button>
     </td>
     <td className="text-center">
       <button
+          disabled={status===types.setIssue.APPROVE}
+          onClick={handleAccept}
           type="button"
           id="PopoverCustomT-1"
           className="btn btn-success btn-sm"
       >
-        Details
+        Approve
       </button>
     </td>
     <td className="text-center">
       <button
+          disabled={status===types.setIssue.DECLINE}
+          onClick={handleDecline}
           type="button"
           id="PopoverCustomT-1"
           className="btn btn-danger btn-sm"
       >
-        Details
+        Decline
       </button>
     </td>
   </tr>;
@@ -93,9 +100,9 @@ const MainContentListsRow=({issues, setApproval})=>{
                 <tr>
                   <th className="text-center">Id</th>
                   <th>Issue</th>
-                  <th className="text-center">User Name</th>
+                  <th className="text-center">User Id</th>
                   <th className="text-center">Status</th>
-                  <th className="text-center">Detail</th>
+                  <th className="text-center">comments</th>
                   <th className="text-center">Aprove</th>
                   <th className="text-center">Decline</th>
                 </tr>

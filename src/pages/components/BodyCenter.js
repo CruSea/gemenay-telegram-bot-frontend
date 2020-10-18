@@ -7,10 +7,10 @@ class BodyCenter extends React.Component {
     return (
       <div className="app-main">
         {}
-        <LeftSideBar></LeftSideBar>
+        <LeftSideBar/>
         {}
         {}
-        <MainContent></MainContent>
+        <MainContent/>
       </div>
     );
   }

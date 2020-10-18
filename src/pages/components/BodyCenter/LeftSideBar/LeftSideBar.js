@@ -45,7 +45,7 @@ class LeftSideBar extends React.Component {
             </button>
           </span>
         </div>
-        <LeftSideBarInner></LeftSideBarInner>
+        <LeftSideBarInner/>
       </div>
     );
   }
