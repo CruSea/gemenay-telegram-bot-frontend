@@ -5,19 +5,18 @@ import axios from "axios";
 
 
 //calling the shop.getproducts Method
-export const getIssues = (pageNo) => async (dispatch) => {
+export const getPendingIssues = (type) => async (dispatch) => {
     try {
         dispatch({ type: types.REQUEST_ISSUES });
 
-        // const response =await  ApiGetIssues(pageNo)
+        // const response =await  ApiGetIssues(type)
         // dispatch(receivedIssues( response))
-
+        //==============================mOCK====================
         mock.getIssues(issues=>{
             console.log("index",issues)
             dispatch(receivedIssues(issues))
         })
-
-
+    //    =============================================================
 
     }catch (e) {
         console.log(e)
@@ -31,14 +30,15 @@ const receivedIssues = ( issues) => ({
     recievedAt:Date.now()
 })
 
-async function ApiGetIssues(pageNo) {
-    
-    let query = constants.API_ROOT+`/?limit=${constants.Limit}&offset=${pageNo}`
-   
-
+async function ApiGetIssues(type) {
+    // let query = constants.API_ROOT+`/?limit=${constants.Limit}&offset=${pageNo}`
+    let query = constants.API_ROOT+`issues/${type}`
     const res = await fetch(query);
     return await res.json()
 }
+
+
+
 
 const approval = ( id, approvalType) => ({
     type: types.APPROVAL_POSTED,
@@ -49,13 +49,13 @@ const approval = ( id, approvalType) => ({
 
 export const setApproval = (id, type) => (dispatch) => {
     dispatch({type: types.POSTING_APPROVAL});
-
+    //=============================MOCK===========
     mock.approve(id, ()=>{
         dispatch(approval(id, type))
     })
-
+    //========================================================
     // axios
-    //     .post(constants.API_ROOT + `/?id=${id}&type=${type}`)
+    //     .post(constants.API_ROOT + `/issues/${id}/${type}`)
     //     .then((res) => {
     //         dispatch(approval(id, type));
     //         console.log("postRes-", res)

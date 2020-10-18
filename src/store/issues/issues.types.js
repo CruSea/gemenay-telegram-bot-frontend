@@ -6,3 +6,13 @@ export const LOADING_ERROR = 'LOADING_ERROR';
 export const POSTING_APPROVAL = 'POSTING_APPROVAL';
 export const APPROVAL_POSTED = 'APPROVAL_POSTED';
 
+export const IssueTypes = {
+    APPROVED: 'getApproved',
+    DECLINED: 'getDeclined',
+    PENDING: 'Pending',
+}
+export const setIssue = {
+    APPROVE: 'approved',
+    DECLINE: 'declined',
+
+}

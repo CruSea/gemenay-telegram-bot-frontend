@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 
-import IssuesList from '../pages/issuesList';
+
 import {setApproval} from '../store/issues/issues.actions'
+import MainContentListsRow from "../pages/components/BodyCenter/mainContent/MainContentListsRow";
 
 const mapStateToProps=(state)=>({
     issues: state.issues.issuesList
@@ -9,4 +10,4 @@ const mapStateToProps=(state)=>({
 const mapActionsToProps = { setApproval };
 export default connect(
     mapStateToProps,
-    mapActionsToProps)(IssuesList)
+    mapActionsToProps)(MainContentListsRow)
