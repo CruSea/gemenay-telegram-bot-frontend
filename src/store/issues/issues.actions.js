@@ -26,6 +26,7 @@ export const getPendingIssues = (type) => async (dispatch) => {
             console.log("index",issues)
             dispatch({ type: types.NETWORK_ERROR, issues });
             dispatch(receivedIssues(issues))
+            console.log("here")
         })
     }
 }
