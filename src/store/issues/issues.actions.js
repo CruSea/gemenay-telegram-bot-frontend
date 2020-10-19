@@ -33,7 +33,7 @@ const receivedIssues = ( issues) => ({
 
 async function ApiGetIssues(type) {
     // let query = constants.API_ROOT+`/?limit=${constants.Limit}&offset=${pageNo}`
-    let query = constants.API_ROOT+`issues/${type}`
+    let query = constants.API_ROOT+`issues/${type}/`
     const res = await fetch(query);
     return await res.json()
 }
@@ -56,7 +56,7 @@ export const setApproval = (id, type) => (dispatch) => {
     // })
     //========================================================
     axios
-        .post(constants.API_ROOT + `issues/${id}/${type}`)
+        .post(constants.API_ROOT + `issues/${id}/${type}/`)
         .then((res) => {
             dispatch(approval(id, type));
             console.log("postRes-", res)

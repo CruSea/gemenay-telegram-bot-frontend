@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import * as types from "./issues.types";
 
  const issuesList = (state = [], action) => {
-     console.log("reducer",action)
+     // console.log("reducer",action)
     switch (action.type) {
       case types.RECEIVED_ISSUES:
         return action.issues

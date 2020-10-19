@@ -61,19 +61,19 @@ class HeaderTopBar extends React.Component {
             </div>
             <ul className="header-menu nav">
               <li className="nav-item">
-                <a href="javascript:void(0);" className="nav-link">
+                <a  className="nav-link">
                   <i className="nav-link-icon fa fa-database"> </i>
                   Statistics
                 </a>
               </li>
               <li className="btn-group nav-item">
-                <a href="javascript:void(0);" className="nav-link">
+                <a  className="nav-link">
                   <i className="nav-link-icon fa fa-edit" />
                   Projects
                 </a>
               </li>
               <li className="dropdown nav-item">
-                <a href="javascript:void(0);" className="nav-link">
+                <a  className="nav-link">
                   <i className="nav-link-icon fa fa-cog" />
                   Settings
                 </a>
@@ -96,7 +96,7 @@ class HeaderTopBar extends React.Component {
                           width={42}
                           className="rounded-circle"
                           src="assets/images/avatars/1.jpg"
-                          alt
+                          alt={""}
                         />
                         <i className="fa fa-angle-down ml-2 opacity-8" />
                       </a>
