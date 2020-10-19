@@ -18,6 +18,7 @@ function App() {
            
             <Route exact path='/old' component={Issues}/>
             <Route exact path='/' component={Body}/>
+            <Route exact path='/newGemenaye' component={Body}/>
 
         </Switch>
             {/*<Newsletter/>*/}
