@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/GemenayeAdmin/static/css/main.6b2e0bdb.chunk.css",
+    "main.js": "/GemenayeAdmin/static/js/main.6d71fe88.chunk.js",
+    "main.js.map": "/GemenayeAdmin/static/js/main.6d71fe88.chunk.js.map",
+    "runtime-main.js": "/GemenayeAdmin/static/js/runtime-main.1448b450.js",
+    "runtime-main.js.map": "/GemenayeAdmin/static/js/runtime-main.1448b450.js.map",
+    "static/js/2.ac9a641a.chunk.js": "/GemenayeAdmin/static/js/2.ac9a641a.chunk.js",
+    "static/js/2.ac9a641a.chunk.js.map": "/GemenayeAdmin/static/js/2.ac9a641a.chunk.js.map",
+    "static/css/3.a8f4dade.chunk.css": "/GemenayeAdmin/static/css/3.a8f4dade.chunk.css",
+    "static/js/3.5ecafa5a.chunk.js": "/GemenayeAdmin/static/js/3.5ecafa5a.chunk.js",
+    "static/js/3.5ecafa5a.chunk.js.map": "/GemenayeAdmin/static/js/3.5ecafa5a.chunk.js.map",
+    "static/js/4.8075c9f0.chunk.js": "/GemenayeAdmin/static/js/4.8075c9f0.chunk.js",
+    "static/js/4.8075c9f0.chunk.js.map": "/GemenayeAdmin/static/js/4.8075c9f0.chunk.js.map",
+    "index.html": "/GemenayeAdmin/index.html",
+    "precache-manifest.ba80777b22bdeec594ca3aceac0db5f7.js": "/GemenayeAdmin/precache-manifest.ba80777b22bdeec594ca3aceac0db5f7.js",
+    "service-worker.js": "/GemenayeAdmin/service-worker.js",
+    "static/css/3.a8f4dade.chunk.css.map": "/GemenayeAdmin/static/css/3.a8f4dade.chunk.css.map",
+    "static/css/main.6b2e0bdb.chunk.css.map": "/GemenayeAdmin/static/css/main.6b2e0bdb.chunk.css.map",
+    "static/js/2.ac9a641a.chunk.js.LICENSE.txt": "/GemenayeAdmin/static/js/2.ac9a641a.chunk.js.LICENSE.txt",
+    "static/media/main.css": "/GemenayeAdmin/static/media/fa-solid-900.f72d546a.eot",
+    "static/media/font-awesome.min.css": "/GemenayeAdmin/static/media/fontawesome-webfont.fee66e71.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1448b450.js",
+    "static/js/2.ac9a641a.chunk.js",
+    "static/css/main.6b2e0bdb.chunk.css",
+    "static/js/main.6d71fe88.chunk.js"
+  ]
+}
