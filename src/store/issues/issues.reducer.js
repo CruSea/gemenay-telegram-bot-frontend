@@ -16,6 +16,16 @@ import * as types from "./issues.types";
         return state
     }
   }
+  const localIssuesList = (state = [], action) => {
+     // console.log("reducer",action)
+    switch (action.type) {
+      case types.NETWORK_ERROR:
+        return action.issues
+
+      default:
+        return state
+    }
+  }
 
   const issuesLoading = (state= false, action)=>{
       switch(action.type){
@@ -30,7 +40,23 @@ import * as types from "./issues.types";
       }
   }
 
+const networkError = (state= false, action)=>{
+    switch(action.type){
+        case types.RECEIVED_ISSUES:
+            return false;
+        case types.REQUEST_ISSUES:
+            return false;
+        case types.LOADING_ERROR:
+            return true;
+        default:
+            return state
+    }
+}
+
   export default combineReducers({
     issuesLoading,   
-    issuesList
+    issuesList,
+      localIssuesList,
+      networkError
+
   })

@@ -22,6 +22,11 @@ export const getPendingIssues = (type) => async (dispatch) => {
     }catch (e) {
         console.log(e)
         dispatch({ type: types.LOADING_ERROR, e });
+        mock.getIssues(issues=>{
+            console.log("index",issues)
+            dispatch({ type: types.NETWORK_ERROR, issues });
+            // dispatch(receivedIssues(issues))
+        })
     }
 }
 

@@ -79,8 +79,22 @@ function SingleIssue({issue={}, setApproval}) {
   </tr>;
 }
 
-const MainContentListsRow=({issues, setApproval})=>{
+const MainContentListsRow=({issues, setApproval,localIssuesList, networkError })=>{
 
+  const hasIssues= issues.length>0;
+
+  const nodes = hasIssues ? (
+      issues.map(issue=>
+          <SingleIssue key={issue.id}
+                       issue={issue}
+                       setApproval={setApproval}
+              /*{...setApproval}*/
+          />
+      )
+
+  ) : (
+      <div><em>no  Issuses in this page. Check your Network</em></div>
+  )
     return (
       <div className="row">
         <div className="col-md-12">
@@ -108,15 +122,7 @@ const MainContentListsRow=({issues, setApproval})=>{
                 </tr>
                 </thead>
                 <tbody>
-                {
-                  issues.map(issue=>
-                      <SingleIssue key={issue.id}
-                             issue={issue}
-                             setApproval={setApproval}
-                          /*{...setApproval}*/
-                      />
-                  )
-                }
+                {nodes}
 
 
 
