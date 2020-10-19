@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://birukbelay.github.io/GemenayeAdmin",
+  "homepage": "http://birukbelay.github.io/newGemenaye",
   "dependencies": {
     "axios": "^0.20.0",
     "cra-template": "1.0.3",
