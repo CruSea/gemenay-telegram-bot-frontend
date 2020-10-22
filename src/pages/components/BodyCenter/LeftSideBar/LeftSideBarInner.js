@@ -16,7 +16,7 @@ const LeftSideBarInner =({dispatch})=>{
             <li className="app-sidebar__heading">Pages</li>
             <li>
               <a  className="mm-active">
-                <i className="metismenu-icon pe-7s-rocket" />
+                <i className="metismenu-icon pe-7s-info" />
                 All issues
               </a>
             </li>
@@ -28,7 +28,7 @@ const LeftSideBarInner =({dispatch})=>{
             {/*    <i className="metismenu-state-icon pe-7s-angle-down caret-left" />*/}
             {/*  </a>*/}
 
-            {/*  <div style={divStyle}>*/}
+              <div style={divStyle}>
 
             {/*  /!*<ul>*!/*/}
             {/*  /!*  <li>*!/*/}
@@ -73,12 +73,12 @@ const LeftSideBarInner =({dispatch})=>{
             {/*  /!*    </a>*!/*/}
             {/*  /!*  </li>*!/*/}
             {/*  /!*</ul>*!/*/}
-            {/*  </div>*/}
+              </div>
 
             {/*</li>*/}
             <li>
               <a onClick={()=>dispatch(getPendingIssues(types.IssueTypes.PENDING))}>
-                <i className="metismenu-icon pe-7s-car" />
+                <i className="metismenu-icon pe-7s-hourglass" />
                 Pending
                 <i className="metismenu-state-icon pe-7s-angle-down caret-left" />
               </a>
@@ -86,7 +86,7 @@ const LeftSideBarInner =({dispatch})=>{
             </li>
             <li>
               <a onClick={()=>dispatch(getPendingIssues(types.IssueTypes.APPROVED))}>
-                <i className="metismenu-icon pe-7s-car" />
+                <i className="metismenu-icon pe-7s-check" />
                 Approved
                 <i className="metismenu-state-icon pe-7s-angle-down caret-left" />
               </a>
@@ -94,15 +94,21 @@ const LeftSideBarInner =({dispatch})=>{
             </li>
             <li>
               <a onClick={()=>dispatch(getPendingIssues(types.IssueTypes.DECLINED))}>
-                <i className="metismenu-icon pe-7s-display2" />
+                <i className="metismenu-icon pe-7s-close-circle" />
                 Declined
               </a>
             </li>
-            <li className="app-sidebar__heading">Comments</li>
+            <li className="app-sidebar__heading">Categories</li>
             <li>
               <a >
-                <i className="metismenu-icon pe-7s-display2" />
-                users comments
+                <i className="metismenu-icon pe-7s-wallet" />
+                Categories
+              </a>
+            </li>
+            <li>
+              <a >
+                <i className="metismenu-icon pe-7s-plus" />
+                Add Categories
               </a>
             </li>
             <div style={divStyle}>

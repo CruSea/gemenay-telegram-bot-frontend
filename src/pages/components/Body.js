@@ -13,8 +13,7 @@ class Body extends React.Component {
         {}
         {}
         {/*<RightSideBar></RightSideBar>*/}
-        {}
-        {}
+
         <BodyCenter/>
       </div>
     );

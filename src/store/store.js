@@ -1,6 +1,7 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import issues from './issues/issues.reducer'
+import categories from './category/category.reducer'
 import {createLogger} from 'redux-logger'
 
 const initialState = {}
@@ -17,6 +18,7 @@ const composeEnhancers =
 const enhancer = composeEnhancers(applyMiddleware(...middleware));
 
 export const reducers = combineReducers({
+    categories,
     issues
   });
 

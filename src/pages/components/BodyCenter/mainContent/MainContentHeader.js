@@ -1,22 +1,29 @@
 import React from "react";
+import { useSelector } from 'react-redux'
+const MainContentHeader =()=> {
 
-class MainContentHeader extends React.Component {
-  render() {
+  const networkError = useSelector(state => state.issues.networkError)
+
     return (
       <div className="app-page-title">
         <div className="page-title-wrapper">
           <div className="page-title-heading">
             <div className="page-title-icon">
-              <i className="pe-7s-car icon-gradient bg-mean-fruit"></i>
+              <i className="pe-7s-info icon-gradient bg-mean-fruit"/>
             </div>
+
             <div>
               Users Issues
               <div className="page-title-subheading">
                 These are users issues
               </div>
+              {networkError&& <li className="list-group-item-danger list-group-item">There is a network Error <br/> Data is from local mock data</li>}
             </div>
+
+
           </div>
 
+          <div>
 
           {/*<div className="page-title-actions">*/}
           {/*  <button*/}
@@ -91,13 +98,14 @@ class MainContentHeader extends React.Component {
           {/*  */}
           {/*  */}
           {/*</div>*/}
+          </div>
 
 
           {" "}
         </div>
       </div>
     );
-  }
+
 }
 
 export default MainContentHeader;

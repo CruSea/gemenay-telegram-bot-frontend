@@ -47,15 +47,6 @@ function SingleIssue({issue={}, setApproval}) {
     </td>
     <td className="text-center">
       <button
-          type="button"
-          id="PopoverCustomT-1"
-          className="btn btn-primary btn-sm"
-      >
-        comments
-      </button>
-    </td>
-    <td className="text-center">
-      <button
           disabled={status===types.setIssue.APPROVE}
           onClick={handleAccept}
           type="button"
@@ -76,15 +67,26 @@ function SingleIssue({issue={}, setApproval}) {
         Decline
       </button>
     </td>
+    <td className="text-center">
+      <button
+          type="button"
+          id="PopoverCustomT-1"
+          className="btn btn-primary btn-sm"
+      >
+        comments
+      </button>
+    </td>
   </tr>;
 }
 
 const MainContentListsRow=({issues, setApproval,localIssuesList, networkError })=>{
 
-  const hasIssues= issues.length>0;
+  let  isuues=issues
+  if (networkError) isuues=localIssuesList
+  const hasIssues= isuues.length>0;
 
   const nodes = hasIssues ? (
-      issues.map(issue=>
+      isuues.map(issue=>
           <SingleIssue key={issue.id}
                        issue={issue}
                        setApproval={setApproval}
@@ -116,16 +118,13 @@ const MainContentListsRow=({issues, setApproval,localIssuesList, networkError })
                   <th>Issue</th>
                   <th className="text-center">User Id</th>
                   <th className="text-center">Status</th>
-                  <th className="text-center">comments</th>
-                  <th className="text-center">Aprove</th>
-                  <th className="text-center">Decline</th>
+                  <th className="text-center"><i className="pe-7s-check"/>  Aprove</th>
+                  <th className="text-center"><i className="pe-7s-close-circle"/>  Decline</th>
+                  <th className="text-center"> <i className="pe-7s-comment"/> comments</th>
                 </tr>
                 </thead>
                 <tbody>
                 {nodes}
-
-
-
                 </tbody>
               </table>
             </div>

@@ -10,6 +10,7 @@ const mapStateToProps=(state)=>({
     networkError: state.issues.networkError,
 
 })
+
 const mapActionsToProps = { setApproval };
 export default connect(
     mapStateToProps,
