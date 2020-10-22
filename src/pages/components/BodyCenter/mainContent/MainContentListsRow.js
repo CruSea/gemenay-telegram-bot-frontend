@@ -82,7 +82,7 @@ function SingleIssue({issue={}, setApproval}) {
 const MainContentListsRow=({issues, setApproval,localIssuesList, networkError })=>{
 
   let  isuues=issues
-  if (networkError) isuues=localIssuesList
+  if (networkError===true) isuues=localIssuesList
   const hasIssues= isuues.length>0;
 
   const nodes = hasIssues ? (

@@ -43,6 +43,7 @@ import * as types from "./issues.types";
 const networkError = (state= false, action)=>{
     switch(action.type){
         case types.RECEIVED_ISSUES:
+        case types.APPROVAL_POSTED:
             return false;
         case types.REQUEST_ISSUES:
             return false;
