@@ -1,11 +1,14 @@
 
 import * as types from './categories.types'
+
 const initialState={
-    categories:[],
-    loading:false,
+    categoriesList:[],
+    loadingCategories:false,
+    loadingPost:false,
     uploadSuccess:false,
-    error:false,
-    errorMessage:""
+    loadError:false,
+    postError:false,
+
 
 }
 
@@ -14,31 +17,46 @@ const categories = (state= initialState, action) => {
         case types.RECEIVED_CATEGORIES:
             return  {
                 ...state,
-                error: false,
-                loading: false,
-                categories: action.categories
+                loadError: false,
+                loadingCategories: false,
+                categoriesList: action.categories
             }
         case types.LOADING_CATEGORY:
             return  {
                 ...state,
-                error: false,
-                loading: true,
+                loadError: false,
+                loadingCategories: true,
+                
+            }
+        case types.LOADING_POST:
+            return  {
+                ...state,
+                postError: false,
+                loadingPost: true,
                 uploadSuccess: false
             }
         case types.UPLOAD_SUCCESS:
             return  {
                 ...state,
-                error: false,
-                loading: false,
+                postError: false,
+                loadingPost: false,
                 uploadSuccess: true
             }
-        case types.ERROR:
+        case types.LOAD_ERROR:
             return {
                 ...state,
-                error: true,
-                loading: false,
+                loadError: true,
+                loadingCategories: false,
                 uploadSuccess: false,
-                errorMessage: action.error
+
+            }
+        case types.POST_ERROR:
+            return {
+                ...state,
+                postError: true,
+                loadingPost: false,
+                uploadSuccess: false,
+
             }
         default:
             return state

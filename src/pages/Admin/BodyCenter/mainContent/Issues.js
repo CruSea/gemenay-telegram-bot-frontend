@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import * as types from '../../../../store/issues/issues.types'
-
+import NoItems from "./dumb.components/noContent";
+import Comments from "./comments";
 function SingleIssue({issue={}, setApproval}) {
 
   const [status, setStatus] = useState("pending");
@@ -26,6 +27,7 @@ function SingleIssue({issue={}, setApproval}) {
 
 
   return <tr>
+
     <td className="text-center text-muted">{issue.id}</td>
     <td>
       <div className="widget-content p-0">
@@ -79,12 +81,14 @@ function SingleIssue({issue={}, setApproval}) {
   </tr>;
 }
 
-const MainContentListsRow=({issues, setApproval,localIssuesList, networkError })=>{
 
-  let  isuues=issues
-  if (networkError===true) isuues=localIssuesList
+const Issues=({issues, setApproval, })=>{
+
+
+  let  isuues=issues.issuesList
+
   const hasIssues= isuues.length>0;
-
+  const comments= <Comments/>
   const nodes = hasIssues ? (
       isuues.map(issue=>
           <SingleIssue key={issue.id}
@@ -95,9 +99,11 @@ const MainContentListsRow=({issues, setApproval,localIssuesList, networkError })
       )
 
   ) : (
-      <div><em>no  Issuses in this page. Check your Network</em></div>
+      <NoItems/>
   )
     return (
+        <div>
+          {comments}
       <div className="row">
         <div className="col-md-12">
           <div className="main-card mb-3 card">
@@ -124,6 +130,7 @@ const MainContentListsRow=({issues, setApproval,localIssuesList, networkError })
                 </tr>
                 </thead>
                 <tbody>
+                {/*{<Comments/>}*/}
                 {nodes}
                 </tbody>
               </table>
@@ -141,8 +148,10 @@ const MainContentListsRow=({issues, setApproval,localIssuesList, networkError })
           </div>
         </div>
       </div>
+          </div>
     );
 
 }
 
-export default MainContentListsRow;
+export default Issues;
+

@@ -5,8 +5,8 @@ import './assets/bootstrap4/bootstrap.min.css'
 import './assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css'
 
 
-const Issues = lazy(()=> import('./container/issues.container'));
-const Body = lazy(()=> import('./pages/components/Body'));
+
+const Admin = lazy(()=> import('./pages/Admin'));
 const NoMatchPage = () => {
     return (
         <h3>404 - Not found</h3>
@@ -20,11 +20,11 @@ function App() {
 
 
         <Switch>
-           
-            <Route exact path='/old' component={Issues}/>
-            <Route exact path='/' component={Body}/>
-            <Route exact path='/newGemenaye' component={Body}/>
-            <Route component={NoMatchPage} />
+
+            {/*<Route exact path='/' component={Admin}/>*/}
+            <Route exact path='/newGemenaye' component={Admin}/>
+            <Route  path='/admin' component={Admin}/>
+            {/*<Route component={NoMatchPage} />*/}
 
         </Switch>
             {/*<Newsletter/>*/}

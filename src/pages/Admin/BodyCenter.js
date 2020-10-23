@@ -1,5 +1,5 @@
 import React from "react";
-import LeftSideBar from "./BodyCenter/LeftSideBar/LeftSideBar";
+import LeftSideBar from "./BodyCenter/LeftSideBar";
 import MainContent from "./BodyCenter/MainContent";
 
 class BodyCenter extends React.Component {
