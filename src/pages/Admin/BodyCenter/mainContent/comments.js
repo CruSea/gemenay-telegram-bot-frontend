@@ -2,56 +2,35 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteComments} from "../../../../store/comments/comments.actions";
 import NoItems from "./dumb.components/noContent";
-import comments from "../../../../store/comments/comments.reducer";
+const Comments=({display, setDisplay})=>{
 
-function Comment({comment}) {
-    const dispatch = useDispatch()
-    const handleDelete=()=> {
-        dispatch(deleteComments(comment.id))
+
+
+    const Style={
+        display: display?`block`:'',
+        top: '25%',
+
+        // left: '50%'
     }
+    const comments = useSelector(state => state.comments.commentsList)
+    const hasComments= comments!==undefined &&comments.length>0;
 
-    return <tr>
-        <th scope="row">{comment.id}</th>
-        <td className="text-center">{comment.user_id}</td>
-        <td className="text-center">{comment.comment}</td>
-        <td className="text-center">
-            <button
-                disabled={false}
-                onClick={handleDelete}
-                type="button"
-                id="PopoverCustomT-1"
-                className="btn btn-outline-danger btn-sm"
-            >
-                delete
-            </button>
+
+    const nodes = hasComments ? (
+        comments.map(comment=>
+            <Comment key={comment.id} comment={comment}  />
+
+        )
+
+    ) : (
+        <tr>
+
+        <td>
+
+            <NoItems/>
         </td>
-
-    </tr>;
-}
-
- const Comments=({display, setDisplay})=>{
-
-
-
-     const Style={
-     display: display?`block`:'',
-         top: '25%',
-
-         // left: '50%'
-     }
-     const comments = useSelector(state => state.comments.commentsList)
-     const hasComments= comments!==undefined &&comments.length>0;
-
-
-     const nodes = hasComments ? (
-         comments.map(comment=>
-             <Comment key={comment.id} comment={comment}  />
-
-         )
-
-     ) : (
-         <NoItems/>
-     )
+        </tr>
+)
 
     return(
         <div className="modal fade show" id="exampleModalLong" tabIndex="-1" role="dialog"
@@ -94,6 +73,33 @@ function Comment({comment}) {
             </div>
         </div>
     )
+}
+
+
+
+function Comment({comment}) {
+    const dispatch = useDispatch()
+    const handleDelete=()=> {
+        dispatch(deleteComments(comment.id))
+    }
+
+    return <tr>
+        <th scope="row">{comment.id}</th>
+        <td className="text-center">{comment.user_id}</td>
+        <td className="text-center">{comment.comment}</td>
+        <td className="text-center">
+            <button
+                disabled={false}
+                onClick={handleDelete}
+                type="button"
+                id="PopoverCustomT-1"
+                className="btn btn-outline-danger btn-sm"
+            >
+                delete
+            </button>
+        </td>
+
+    </tr>;
 }
 
 export default Comments

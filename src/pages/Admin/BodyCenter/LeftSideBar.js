@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {getPendingIssues} from '../../../store/issues/issues.actions'
+import {getFilteredIssues} from '../../../store/issues/issues.actions'
 import * as types from '../../../store/issues/issues.types'
 import {Link, useRouteMatch} from "react-router-dom";
 
@@ -24,7 +24,7 @@ const LeftSideBarInner =()=>{
 
 
             <li>
-              <Link to={`${match.path}/list`} onClick={()=>dispatch(getPendingIssues(types.IssueTypes.PENDING))}>
+              <Link to={`${match.path}/list`} onClick={()=>dispatch(getFilteredIssues(types.IssueApiTypes.PENDING))}>
                 <i className="metismenu-icon pe-7s-hourglass" />
                 Pending
                 <i className="metismenu-state-icon pe-7s-angle-down caret-left" />
@@ -32,7 +32,7 @@ const LeftSideBarInner =()=>{
 
             </li>
             <li>
-              <Link to={`${match.path}/list`} onClick={()=>dispatch(getPendingIssues(types.IssueTypes.APPROVED))}>
+              <Link to={`${match.path}/list`} onClick={()=>dispatch(getFilteredIssues(types.IssueApiTypes.APPROVED))}>
                 <i className="metismenu-icon pe-7s-check" />
                 Approved
                 <i className="metismenu-state-icon pe-7s-angle-down caret-left" />
@@ -40,7 +40,7 @@ const LeftSideBarInner =()=>{
 
             </li>
             <li>
-              <Link to={`${match.path}/list`} onClick={()=>dispatch(getPendingIssues(types.IssueTypes.DECLINED))}>
+              <Link to={`${match.path}/list`} onClick={()=>dispatch(getFilteredIssues(types.IssueApiTypes.DECLINED))}>
                 <i className="metismenu-icon pe-7s-close-circle" />
                 Declined
               </Link>

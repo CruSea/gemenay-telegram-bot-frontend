@@ -10,28 +10,63 @@ function SingleIssue({issue={}, setApproval, setDisplay}) {
   const dispatch = useDispatch();
   const [status, setStatus] = useState("pending");
 
-  const handleAccept=()=> {
-    setStatus(types.setIssue.APPROVE)
-    setApproval(issue.id, types.setIssue.APPROVE)
 
+  switch (issue.status) {
+    case false:
+      setStatus(types.IssueStatuses.PENDING)
+
+          break
+    case true:
+      setStatus(types.IssueStatuses.APPROVED)
+
+          break
+    case 3:
+      setStatus(types.IssueStatuses.DECLINED)
+
+      break
+    default:
+      break
+
+  }
+  let className = 'badge';
+  switch (status) {
+    case false:
+      className += ' badge-warning';
+          break
+    case true:
+
+      className += ' badge-success';
+          break
+    case 3:
+      className += ' badge-danger';
+      break
+    default:
+      break
+
+  }
+
+  // if (status === types.setIssue.APPROVE) {
+  //
+  // }else if (status === types.setIssue.DECLINE){
+  //
+  // }else {
+  //
+  // }
+  const handleAccept=()=> {
+    setStatus(types.IssueStatuses.APPROVED)
+    setApproval(issue.id, types.setApiIssue.APPROVE)
+
+  }
+  const handleDecline=()=> {
+    setStatus(types.IssueStatuses.DECLINED)
+    setApproval(issue.id, types.setApiIssue.DECLINE)
   }
   const showComment=()=>{
     dispatch(getComments(issue.id))
     setDisplay(true)
   }
-  const handleDecline=()=> {
-    setStatus(types.setIssue.DECLINE)
-    setApproval(issue.id, types.setIssue.DECLINE)
-  }
 
-  let className = 'badge';
-  if (status === types.setIssue.APPROVE) {
-    className += ' badge-success';
-  }else if (status === types.setIssue.DECLINE){
-    className += ' badge-danger';
-  }else {
-    className += ' badge-warning';
-  }
+
 
 
   return <tr>
@@ -56,8 +91,9 @@ function SingleIssue({issue={}, setApproval, setDisplay}) {
       <div className={className}>{status}</div>
     </td>
     <td className="text-center">
+      {status!==types.IssueStatuses.APPROVED&&
       <button
-          disabled={status===types.setIssue.APPROVE}
+          disabled={status===types.IssueStatuses.APPROVED}
           onClick={handleAccept}
           type="button"
           id="PopoverCustomT-1"
@@ -65,10 +101,13 @@ function SingleIssue({issue={}, setApproval, setDisplay}) {
       >
         Approve
       </button>
+      }
+
     </td>
     <td className="text-center">
+      {status!==types.IssueStatuses.DECLINED&&
       <button
-          disabled={status===types.setIssue.DECLINE}
+          disabled={status===types.IssueStatuses.DECLINED}
           onClick={handleDecline}
           type="button"
           id="PopoverCustomT-1"
@@ -76,6 +115,9 @@ function SingleIssue({issue={}, setApproval, setDisplay}) {
       >
         Decline
       </button>
+
+      }
+
     </td>
     <td className="text-center">
       <button
@@ -96,8 +138,14 @@ const Issues=({issues, setApproval, })=>{
   const [displayComment, SetDisplay]= useState(false);
 
   let  isuues=issues.issuesList
+  let  networkError=issues.networkError
+  //TODO if local and api data mix comment out this
+  if(networkError===true){
+    isuues=issues.localIssues
 
-  const hasIssues= isuues.length>0;
+  }
+
+  const hasIssues= isuues!==undefined&&isuues.length>0;
 
   const nodes = hasIssues ? (
       isuues.map(issue=>
@@ -110,7 +158,13 @@ const Issues=({issues, setApproval, })=>{
       )
 
   ) : (
+      <tr>
+      <td>
+
       <NoItems/>
+      </td>
+
+      </tr>
   )
     return (
         <div>
@@ -118,6 +172,8 @@ const Issues=({issues, setApproval, })=>{
       <div className="row">
         <div className="col-md-12">
           <div className="main-card mb-3 card">
+            {networkError&& <li className="list-group-item-danger list-group-item">There is some Error <br/> isuues are from local cash</li>}
+
             <div className="card-header">
               Users Issues
               <div className="btn-actions-pane-right">

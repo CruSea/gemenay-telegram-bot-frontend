@@ -5,11 +5,11 @@ import axios from "axios";
 
 
 //calling the shop.getproducts Method
-export const getPendingIssues = (type) => async (dispatch) => {
+export const getFilteredIssues = (type) => async (dispatch) => {
     try {
         dispatch({ type: types.REQUEST_ISSUES });
 
-        const response =await  ApiGetIssues(type)
+        const response =await  ApiGetFilteredIssues(type)
         console.log("MainIssues",response)
         dispatch(receivedIssues( response))
         //==============================mOCK====================
@@ -20,10 +20,24 @@ export const getPendingIssues = (type) => async (dispatch) => {
     //    =============================================================
 
     }catch (e) {
-        console.log(e)
-        dispatch({ type: types.LOADING_ERROR, e });
+        mock.getIssues(issues=>{
+           let a={
+               issues:issues,
+               error:e
+           }
+
+        dispatch({ type: types.LOADING_ERROR,a  });
+        console.log("...........",a)
+        })
 
     }
+}
+
+async function ApiGetFilteredIssues(type) {
+    // let query = constants.API_ROOT+`/?limit=${constants.Limit}&offset=${pageNo}`
+    let query = constants.API_ROOT+`issues/${type}/`
+    const res = await fetch(query);
+    return await res.json()
 }
 
 const receivedIssues = ( issues) => ({
@@ -32,12 +46,6 @@ const receivedIssues = ( issues) => ({
     recievedAt:Date.now()
 })
 
-async function ApiGetIssues(type) {
-    // let query = constants.API_ROOT+`/?limit=${constants.Limit}&offset=${pageNo}`
-    let query = constants.API_ROOT+`issues/${type}/`
-    const res = await fetch(query);
-    return await res.json()
-}
 
 
 
@@ -63,7 +71,8 @@ export const setApproval = (id, type) => (dispatch) => {
             console.log("postRes-", res)
         })
         .catch((err) => {
-            dispatch({ type: types.LOADING_ERROR, error:err });
+
+            dispatch({ type: types.POST_ERROR, error:err });
             console.log(err)
         });
 };

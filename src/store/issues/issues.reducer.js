@@ -1,17 +1,12 @@
-
 import * as types from "./issues.types";
-
-
-
-
-
-
 
 const initialState={
     issuesList:[],
     issuesLoading:false,
-    networkError:false
+    networkError:false,
+    localIssues:[]
 }
+
 const issues=(state=initialState, action)=>{
     switch(action.type){
 
@@ -37,10 +32,12 @@ const issues=(state=initialState, action)=>{
 
             }
         case types.LOADING_ERROR:
+
             return  {
                 ...state,
-                networkError: false,
+                networkError: true,
                 loading: false,
+                localIssues: action.a.issues
 
             }
         default:

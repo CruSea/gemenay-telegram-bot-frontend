@@ -5,10 +5,10 @@ import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux'
 import Store from './store/store'
-import { getPendingIssues } from './store/issues/issues.actions';
+import { getFilteredIssues } from './store/issues/issues.actions';
 import * as types from './store/issues/issues.types'
 
-Store.dispatch(getPendingIssues(types.IssueTypes.PENDING))
+Store.dispatch(getFilteredIssues(types.IssueApiTypes.PENDING))
 
 
 ReactDOM.render(
