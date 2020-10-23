@@ -40,7 +40,8 @@ export const deleteCategory = (id) => (dispatch) => {
         .delete(API_ROOT +`${id}/categories` )
         .then((res) => {
             dispatch({ type: types.UPLOAD_SUCCESS});
-            console.log("postRes-", res)
+            dispatch(getCategories());
+
         })
         .catch((err) => {
             dispatch({ type: types.POST_ERROR, error:err });

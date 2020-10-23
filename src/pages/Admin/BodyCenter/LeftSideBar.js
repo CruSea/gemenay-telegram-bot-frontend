@@ -47,16 +47,13 @@ const LeftSideBarInner =()=>{
             </li>
             <li className="app-sidebar__heading">Categories</li>
             <li>
-              <a >
+              <Link to={`${match.path}/add`} >
                 <i className="metismenu-icon pe-7s-wallet" />
                 Categories
-              </a>
+              </Link>
             </li>
             <li>
-              <Link to={`${match.path}/add`} >
-                <i className="metismenu-icon pe-7s-plus" />
-                Add Categories
-              </Link>
+
             </li>
 
           </ul>
