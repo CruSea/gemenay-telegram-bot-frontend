@@ -2,14 +2,22 @@ import React, {useState} from "react";
 import * as types from '../../../../store/issues/issues.types'
 import NoItems from "./dumb.components/noContent";
 import Comments from "./comments";
-function SingleIssue({issue={}, setApproval}) {
+import {useDispatch} from "react-redux";
+import {getComments} from "../../../../store/comments/comments.actions";
 
+function SingleIssue({issue={}, setApproval, setDisplay}) {
+
+  const dispatch = useDispatch();
   const [status, setStatus] = useState("pending");
 
   const handleAccept=()=> {
     setStatus(types.setIssue.APPROVE)
     setApproval(issue.id, types.setIssue.APPROVE)
 
+  }
+  const showComment=()=>{
+    dispatch(getComments(issue.id))
+    setDisplay(true)
   }
   const handleDecline=()=> {
     setStatus(types.setIssue.DECLINE)
@@ -71,6 +79,7 @@ function SingleIssue({issue={}, setApproval}) {
     </td>
     <td className="text-center">
       <button
+          onClick={showComment}
           type="button"
           id="PopoverCustomT-1"
           className="btn btn-primary btn-sm"
@@ -84,16 +93,18 @@ function SingleIssue({issue={}, setApproval}) {
 
 const Issues=({issues, setApproval, })=>{
 
+  const [displayComment, SetDisplay]= useState(false);
 
   let  isuues=issues.issuesList
 
   const hasIssues= isuues.length>0;
-  const comments= <Comments/>
+
   const nodes = hasIssues ? (
       isuues.map(issue=>
           <SingleIssue key={issue.id}
                        issue={issue}
                        setApproval={setApproval}
+                       setDisplay={SetDisplay}
               /*{...setApproval}*/
           />
       )
@@ -103,7 +114,7 @@ const Issues=({issues, setApproval, })=>{
   )
     return (
         <div>
-          {comments}
+         <Comments display={displayComment} setDisplay={SetDisplay}/>
       <div className="row">
         <div className="col-md-12">
           <div className="main-card mb-3 card">

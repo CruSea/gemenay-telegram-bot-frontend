@@ -57,7 +57,7 @@ const Categories =()=>{
     }
 
     const hasCategories= categories!==undefined &&categories.length>0;
-    console.log("...io",categories)
+
 
     const nodes = hasCategories ? (
         categories.map(category=>

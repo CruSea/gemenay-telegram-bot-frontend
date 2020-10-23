@@ -2,6 +2,7 @@ import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import issues from './issues/issues.reducer'
 import categories from './category/category.reducer'
+import comments from './comments/comments.reducer'
 import {createLogger} from 'redux-logger'
 
 const initialState = {}
@@ -19,7 +20,8 @@ const enhancer = composeEnhancers(applyMiddleware(...middleware));
 
 export const reducers = combineReducers({
     categories,
-    issues
+    issues,
+    comments
   });
 
 const Store = createStore(reducers, initialState, enhancer);

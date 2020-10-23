@@ -47,4 +47,4 @@ const comments = (state= initialState, action) => {
 
 
 
-export default categories
+export default comments

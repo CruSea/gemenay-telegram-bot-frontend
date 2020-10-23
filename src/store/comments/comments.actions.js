@@ -14,19 +14,19 @@ const comments = (comments) => ({
     recievedAt:Date.now()
 })
 
-export const getComments = () => async (dispatch) => {
+export const getComments = (id) => async (dispatch) => {
     try {
         dispatch({ type: types.LOADING_COMMENTS });
-        const response =await  ApiGetComments()
+        const response =await  ApiGetComments(id)
         dispatch(comments( response))
     }catch (e) {
         dispatch({ type: types.ERROR, e });
     }
 }
 
-async function ApiGetComments() {
+async function ApiGetComments(id) {
 
-    let query = API_ROOT+`comments/`
+    let query = API_ROOT+`issues/${id}/comments/`
     // const res = await fetch(query)
 
     const res = await fetch(query);
